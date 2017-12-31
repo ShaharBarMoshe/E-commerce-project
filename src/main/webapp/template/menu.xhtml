@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:c="http://java.sun.com/jsp/jstl/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets">
+<body>
+	<ui:composition>
+		<div id="templatemo_menubar">
+				<div id="top_nav" class="ddsmoothmenu">
+					<ul>
+						<li>
+							<h:link outcome="home" value="Home" class="${homeClass}" />
+						</li>
+						<li>
+							<a href="#" class="${categoriesClass}">Categories</a>
+							<ul>
+								<c:forEach items="${categoryController.all}" var="cat" varStatus="loop">
+									<li>
+										<h:link outcome="category" value="${cat.name}">
+											<f:param name="category_id" value="${cat.id}" />
+										</h:link>
+									</li>
+								</c:forEach>
+							</ul>
+						</li>
+						<li>
+							<h:link outcome="about" value="About" class="${aboutClass}"/>
+						</li>
+						<li>
+							<h:link outcome="faqs" value="FAQs" class="${faqClass}"/>
+						</li>
+						<li>
+							<h:link outcome="contact" value="Contact us" class="${contactusClass}"/>
+						</li>
+						<c:if test="${sessionBean.customer != null}">
+							<li>
+								<a href="#" class="myaccountClass">My Account</a>
+								<ul>
+									<li><h:link outcome="shoppingcart" value="My Cart" /></li>
+									<li><h:link outcome="checkout" value="Checkout" /></li>
+									<li><h:link outcome="myaccount" value="Orders" /></li>
+									<li><h:link outcome="editPersonalInformation" value="Edit Details" /></li>
+									
+								</ul>
+							</li>
+						</c:if>
+					</ul>
+					<br style="clear: left" />
+				</div>
+				<!-- end of ddsmoothmenu -->
+				<div id="templatemo_search">
+					<input type="text" value="" name="keyword" id="keyword"
+						title="keyword" onfocus="clearText(this)"
+						onblur="clearText(this)" class="txt_field" /> 
+					<input
+						type="button" name="Search" value="" alt="Search"
+						id="searchbutton" title="Search" class="sub_btn" onclick="search()"/>
+				</div>
+			</div>
+			<!-- END of templatemo_menubar -->
+	</ui:composition>
+</body>
+</html>

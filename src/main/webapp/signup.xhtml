@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:c="http://java.sun.com/jsp/jstl/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets">
+<h:body>
+
+	<ui:composition template="/template/layout.xhtml">
+
+		<ui:define name="content">
+			<div id="content" class="float_r">
+				<h2>Sign up</h2>
+
+				<div class="content_half float_l checkout" id="signup_form">
+					<h:form id="signupFormId" prependId="false">
+						<p>First name:</p>
+						<h:inputText id="firstName" required="true"
+							requiredMessage="Please enter first name" style="width: 300px;"
+							value="#{signupController.firstName}" />
+						<h:messages style="color:red;" for="firstName" />
+						<p>Last name:</p>
+						<h:inputText id="lastName" required="true"
+							requiredMessage="Please enter last name" style="width: 300px;"
+							value="#{signupController.lastName}" />
+						<h:messages style="color:red;" for="lastName" />
+						<p>Username:</p>
+						<h:inputText id="username" required="true"
+							requiredMessage="Please enter username" style="width: 300px;"
+							value="#{signupController.username}"  >
+							<f:validator binding="#{customerUserNameValidator}"></f:validator>
+							</h:inputText>
+						<h:messages style="color:red;" for="username" />
+						<p>Password:</p>
+						<h:inputSecret id="password" required="true"
+							requiredMessage="Please enter password" style="width: 300px;"
+							value="#{signupController.password}" />
+						<h:messages style="color:red;" for="password" />
+						<p>Repeat password:</p>
+						<h:inputSecret id="passwordAgain" required="true"
+							requiredMessage="Please enter password again"
+							style="width: 300px;" value="#{signupController.passwordAgain}" >
+							<f:validator validatorId="PasswordAgainValidator"></f:validator>
+							</h:inputSecret>
+						<h:messages style="color:red;" for="passwordAgain" />
+						<p>Email:</p>
+						<h:inputText id="email" required="true"
+							requiredMessage="Please enter email" style="width: 300px;"
+							value="#{signupController.email}" >
+							<f:validator validatorId="EmailValidator"></f:validator>
+							</h:inputText>
+						<h:messages style="color:red;" for="email"  />
+						<p>Phone number:</p>
+						<h:inputText id="phoneNumber" required="true"
+							requiredMessage="Please enter phone number" style="width: 300px;"
+							value="#{signupController.phoneNumber}">
+							<f:validator validatorId="PhoneValidator"></f:validator>
+						</h:inputText>
+						<h:messages style="color:red;" for="phoneNumber" />
+						<p>City:</p>
+						<h:selectOneMenu value="#{signupController.cityId}"
+							required="true" id="city" style="width:112px;"
+							requiredMessage="Please enter city">
+							<f:selectItem itemValue="#{null}" itemLabel="-- select one --" />
+							<f:selectItems value="#{signupController.cities}" var="c"
+								itemLabel="#{c.name}" itemValue="#{c.id}" />
+						</h:selectOneMenu>
+						<h:messages style="color:red;" for="city" />
+						<p>Address:</p>
+						<h:inputText value="#{signupController.addressLine}"
+							required="true" id="address" style="width: 300px;"
+							requiredMessage="Please enter address line" />
+						<h:messages style="color:red;" for="address" />
+						<h:commandButton id="submit" class="submit_btn" value="Signup"
+							type="submit" action="home"
+							actionListener="#{signupController.apply()}"
+							style="margin-top:20px;" />
+					</h:form>
+				</div>
+				<div class="cleaner h50"></div>
+
+			</div>
+
+		</ui:define>
+
+	</ui:composition>
+
+</h:body>
+
+</html>
+
+
